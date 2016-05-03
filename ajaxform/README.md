@@ -36,13 +36,13 @@ $('#myForm').ajaxForm({
 
 ###target
 提供一个Html元素，在请求“成功”并且未设置dataType参数，则将返回的数据replaceWith()或html()掉对象原来的内容，再遍历对象调用success回调函数。
-if (!options.dataType && options.target) {
-    var oldSuccess = options.success || function(){};
-    callbacks.push(function(data) {
-        var fn = options.replaceTarget ? 'replaceWith' : 'html';
-        $(options.target)[fn](data).each(oldSuccess, arguments);
-    });
-}
+if (!options.dataType && options.target) {<br>
+    var oldSuccess = options.success || function(){};<br>
+    callbacks.push(function(data) {<br>
+        var fn = options.replaceTarget ? 'replaceWith' : 'html';<br>
+        $(options.target)[fn](data).each(oldSuccess, arguments);<br>
+    });<br>
+}<br>
 
 ###includeHidden
 在请求成功后，若设置执行clearForm()函数清空表单元素则会根据includeHidden设置决定如何清空隐藏域元素。
@@ -85,26 +85,26 @@ iframeSrc
 
 ###ajaxSubmit函数处理流程：
 
-1)         根据&lt;form action=”” method=””&gt;处理url、type参数以及success、iframeSrc等参数。
-2)         触发beforeSerialize()回调函数
-3)         序列化data参数和表单元素
-4)         触发beforeSubmit()回调函数
-5)         根据type参数处理options.data和options.url参数
-6)         注册resetForm()和clearForm()回调函数
-7)         注册将返回数据加载到options.target指定的元素上的回调函数
-8)         注册success回调函数，若有options.target则循环该元素，并为每个子元素注册success回调函数
-9)         处理&lt;input type=”file” /&gt;文件上传元素
-	a)         不包含文件元素，直接调用jQuery.ajax()函数。
-	b)         包含文件元素，并且不支持XMLHttpRequest Level 2提供的文件上传新特性window.FormData。则通过IFrame模拟表单异步提交。
-	                   i.              调用fileUploadIframe()函数。
-	                   ii.              根据options. iframeTarget设置决定是创建一个&lt;iframe&gt;元素还是使用现有的&lt;iframe&gt;元素
-	                   iii.              模拟xhr对象以及jQuery.ajax()过程，以支持xhr对象返回和ajax事件触发
-	                   iv.              设置&lt;form&gt;的target指向&lt;iframe&gt;元素、encoding和enctypedata”、method为”post”值等等
-	                   v.              处理options.extraData为&lt;input type=”hidden” /&gt;元素并添加到&lt;form&gt;元素中。
-	                   vi.              调用&lt;form&gt;的submit()事件。（同步提交，但因为&lt;form&gt;的target指向&lt;iframe&gt;标签，所以刷新的是&lt;iframe&gt;中的内容，以此模拟异步提交）
-	c)         包含文件元素，并且支持XMLHttpRequest Level 2提供的新特性，则调用fileUploadXhr()函数，通过FormData()对象将数据传递给options.data参数，再调用jQuery.ajax(options)函数异步提交表单。并且XMLHttpRequest Level 2的新特性还支持进度条提示功能。（更多新特性请看：《XMLHttpRequest Level 2 使用指南》）
-10)     将内部jqxhr缓存起来，以供访问。$form.removeData('jqxhr').data('jqxhr', jqxhr);
-11)     返回表单元素本身，以便符合jQuery的链式操作模式。
+1)         根据&lt;form action=”” method=””&gt;处理url、type参数以及success、iframeSrc等参数。<br>
+2)         触发beforeSerialize()回调函数<br>
+3)         序列化data参数和表单元素<br>
+4)         触发beforeSubmit()回调函数<br>
+5)         根据type参数处理options.data和options.url参数<br>
+6)         注册resetForm()和clearForm()回调函数<br>
+7)         注册将返回数据加载到options.target指定的元素上的回调函数<br>
+8)         注册success回调函数，若有options.target则循环该元素，并为每个子元素注册success回调函数<br>
+9)         处理&lt;input type=”file” /&gt;文件上传元素<br>
+	a)         不包含文件元素，直接调用jQuery.ajax()函数。<br>
+	b)         包含文件元素，并且不支持XMLHttpRequest Level 2提供的文件上传新特性window.FormData。则通过IFrame模拟表单异步提交。<br>
+	                   i.              调用fileUploadIframe()函数。<br>
+	                   ii.              根据options. iframeTarget设置决定是创建一个&lt;iframe&gt;元素还是使用现有的&lt;iframe&gt;元素<br>
+	                   iii.              模拟xhr对象以及jQuery.ajax()过程，以支持xhr对象返回和ajax事件触发<br>
+	                   iv.              设置&lt;form&gt;的target指向&lt;iframe&gt;元素、encoding和enctypedata”、method为”post”值等等<br>
+	                   v.              处理options.extraData为&lt;input type=”hidden” /&gt;元素并添加到&lt;form&gt;元素中。<br>
+	                   vi.              调用&lt;form&gt;的submit()事件。（同步提交，但因为&lt;form&gt;的target指向&lt;iframe&gt;标签，所以刷新的是&lt;iframe&gt;中的内容，以此模拟异步提交）<br>
+	c)         包含文件元素，并且支持XMLHttpRequest Level 2提供的新特性，则调用fileUploadXhr()函数，通过FormData()对象将数据传递给options.data参数，再调用jQuery.ajax(options)函数异步提交表单。并且XMLHttpRequest Level 2的新特性还支持进度条提示功能。（更多新特性请看：《XMLHttpRequest Level 2 使用指南》）<br>
+10)     将内部jqxhr缓存起来，以供访问。$form.removeData('jqxhr').data('jqxhr', jqxhr);<br>
+11)     返回表单元素本身，以便符合jQuery的链式操作模式。<br>
 
 ##方法：
 
