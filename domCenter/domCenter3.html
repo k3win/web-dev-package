@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+ .wrap1 {
+    height: 100px;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid red;
+    position: relative;
+ }   
+
+  .wrap2 {
+    height: 100px;
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid blue;
+    position: absolute;
+    left: 50%;
+ }   
+
+ .c1 {
+    width: inherit;
+    height: inherit;
+    background-color: gray;
+    margin-left:-50%;
+    display: inline-block;
+ }
+        </style>
+    </head>
+    <body>
+ <div class="wrap1">
+    <div class="wrap2">
+        <div class="c1"></div>
+    </div>
+</div>
+    </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    html,body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        font: 12px Arial, 宋体, 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', sans-serif;
+    }
+    .container{
+        min-height: 100%;
+    }
+
+    .header{
+        height: 60px;
+    }
+    .header-outer{
+        width: 100%;
+        height: 60px;
+        position: relative;
+    }
+    .header-fixed{
+        position: fixed;
+        top: 0;
+    }
+    .header-inner{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .pl{
+        float: left;
+    }
+    .pr{
+        float: right;
+    }
+
+    .header-dropdown{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .header-dropdown>li{
+        float: left;
+        position: relative;
+        padding: 10px 0;
+        margin-left: 5px;
+    }
+    .header-dropdown>li>a,
+    .header-dropdown>li>span{
+        display: inline-block;
+        height: 40px;
+        padding: 0 30px;
+        border: 1px solid #fff;
+        font-size: 13px;
+        color: #777;
+        line-height: 40px;
+    }
+    .header-dropdown>li:hover>a,
+    .header-dropdown>li:hover>span{
+        border: 1px solid #ccc;
+    }
+
+    .dropdown-list{
+        list-style: none;
+        position: absolute;
+        left: 0;
+        display: none;
+        width: 100%;
+        padding: 0;
+        border: 1px solid #ccc;
+        border-top: none;
+        text-align: center;
+        background-color: #fff;
+    }
+    .header-dropdown>li:hover .dropdown-list{
+        display: block;
+    }
+    .dropdown-list>li>a{
+        display: inline-block;
+        height: 40px;
+        color: #777;
+        font-size: 13px;
+        line-height: 40px;
+    }
+    .dropdown-list>li>a:hover{
+        color: #333;
+    }
+
+    .dropdown-toggle:hover{
+        box-shadow: 0px 3px 3px #ccc inset;
+    }
+    .colorbar{
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -1px;
+        background: url(colorbar.png) center no-repeat;
+        background-size: cover;
+    }
+
+    .free-headbar{
+        display: none;
+        position: fixed;
+        top:0;
+        width: 100%;
+        height: 60px;
+    }    
+    .free-headbar-show{
+        display: block;
+    }
+    .headbar-inner{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .headbar-mains{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .headbar-mains li{
+        margin-right: 10px;
+        padding-top: 10px;
+        float: left;
+    }
+    .headbar-mains li a{
+        display: inline-block;
+        padding: 10px 15px 13px;
+        font-size: 16px;
+    }
+    .main-point{
+        border-bottom: 4px solid #000;
+    }
+    </style>
+    <body>
+    	<div class="container">
+    		<div class="header">
+                <div class="header-outer">
+                    <div class="colorbar"></div>
+                    <div class="header-inner">
+                        <div class="header-brand pl">
+                            <h1 class="logo">
+                                <a href="">head</a>
+                            </h1>
+                        </div>
+                        <div class="header-navigation pr">
+                             <ul class="header-dropdown">
+                                <li>
+                                    <a class="dropdown-toggle">ydk</a>
+                                    <ol class="dropdown-list">
+                                        <li><a href="">个人设置</a></li>
+                                        <li><a href="">退出登录</a></li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="header-options pr">
+                            <ul class="header-dropdown">
+                                <li><a>使用说明</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+            <div class="free-headbar">
+                <div class="colorbar"></div>
+                <div class="headbar-inner">
+                    <div class="headbar-options">
+                        <ul class="headbar-mains pl">
+                            <li><a class="main-point">重点1</a></li>
+                            <li><a>重点2</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 2000px;"></div>
+    	</div>
+    </body>
+    <script>
+        var freeHBar = document.querySelector('.free-headbar');
+        window.onscroll = function(e){
+            if(e.srcElement.scrollingElement.scrollTop > e.srcElement.scrollingElement.clientHeight * 0.5){
+                freeHBar.className +=
+                 freeHBar.className.indexOf('free-headbar-show') > -1 ? "" : ' free-headbar-show';
+            }else{
+                freeHBar.className = freeHBar.className.replace(' free-headbar-show',"");
+            }
+
+        }
+    </script>
+</html>
